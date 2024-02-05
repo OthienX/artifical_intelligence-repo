@@ -1,16 +1,20 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from kivy.lang import Builder
+from kivymd.app import MDApp
+from kivymd.uix.textfield import MDTextFieldRound
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+class MainApp(MDApp):
+    def build(self):
+        self.theme_cls.theme_style = "Dark"
+        return Builder.load_file("boxLayout.kv")  # Load the login.kv file
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    def logger(self):
+        self.root.ids.welcome_label.text = f"Sup {self.root.ids.user.text}!"
+
+    def clear(self):
+        self.root.ids.welcome_label.text = "Welcome"
+        self.root.ids.user.text = ""
+        self.root.ids.password.text = ""
+
+if __name__ == "__main__":
+    MainApp().run()
